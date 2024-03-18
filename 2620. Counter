@@ -1,0 +1,17 @@
+var createCounter = function (n) {
+    let count = 0
+    let number = n
+
+    return function () {
+        if (count === 0) {
+            count = 1;
+            return n
+        }
+        else {
+            number = number + 1
+            return number
+        }
+
+    };
+};
+
