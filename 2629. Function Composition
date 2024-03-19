@@ -1,0 +1,7 @@
+var compose = function(functions) {
+    return function(x) {
+        return functions.reduceRight(function(acc, fn) {
+            return fn(acc);
+        }, x);
+    };
+};
