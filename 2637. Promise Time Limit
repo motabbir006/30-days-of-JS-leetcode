@@ -1,0 +1,15 @@
+var timeLimit = function(fn, t) {
+    
+    return async function(...args) {
+        return new Promise ((s, r) =>{
+            setTimeout(() =>{
+                r("Time Limit Exceeded");
+            },t);
+
+            fn(...args)
+            .then(s)
+            .catch(r);
+        });
+        
+    };
+};
