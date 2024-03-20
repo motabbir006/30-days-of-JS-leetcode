@@ -1,0 +1,10 @@
+var cancellable = function(fn, args, t) {
+    fn(...args);
+    const intert = setInterval(() => {
+        fn(...args)
+    },t);
+
+    const cfn =() => clearInterval(intert);
+    return cfn;
+    
+};
