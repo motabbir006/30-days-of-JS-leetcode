@@ -1,0 +1,12 @@
+var join = function(arr1, arr2) {
+    const map1 = new Map(arr1.map(item => [item.id, item]));
+    const map2 = new Map(arr2.map(item => [item.id, item]));
+
+    const allIds = new Set([...map1.keys(), ...map2.keys()]);
+
+    return Array.from(allIds).map(id => ({
+        id,
+        ...map1.get(id),
+        ...map2.get(id)
+    }));
+};
