@@ -1,0 +1,12 @@
+var compactObject = function (obj) {
+    if (Array.isArray(obj)) {
+        return obj.map(item => item && typeof item === 'object' ? compactObject(item) : item).filter(Boolean);
+    }
+    const ans = {};
+    for (const key of Object.keys(obj)) {
+        if (obj[key]) {
+            ans[key] = typeof obj[key] === 'object' ? compactObject(obj[key]) : obj[key];
+        }
+    }
+    return ans;
+};
