@@ -1,0 +1,17 @@
+var TimeLimitedCache = function () { this.memory = new Map(); };
+TimeLimitedCache.prototype.set = function (key, value, duration) {
+    let exists = false;
+    if (this.memory.has(key)) {
+        exists = true;
+        clearTimeout(this.memory.get(key)[1]);
+    }
+    const timeoutID = setTimeout(() => { this.memory.delete(key); }, duration);
+    this.memory.set(key, [value, timeoutID]);
+    return exists;
+};
+TimeLimitedCache.prototype.get = function (key) {
+    return this.memory.has(key) ? this.memory.get(key)[0] : -1;
+};
+TimeLimitedCache.prototype.count = function () {
+    return this.memory.size;
+};
