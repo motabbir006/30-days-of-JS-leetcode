@@ -1,0 +1,10 @@
+Array.prototype.groupBy = function(fn) {
+    return this.reduce((groups, element) => {
+        const key = fn(element);
+        if (!groups[key]) {
+            groups[key] = [];
+        }
+        groups[key].push(element);
+        return groups;
+    }, {});
+};
