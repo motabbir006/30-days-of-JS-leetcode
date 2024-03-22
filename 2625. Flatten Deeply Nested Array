@@ -1,0 +1,17 @@
+var flat = function (arr, n) {
+    if (n === undefined) {
+        return arr.flat(Infinity);
+    } else if (n === 0) {
+        return arr;
+    } else {
+        return arr.reduce((acc, val) => {
+            if (Array.isArray(val)) {
+                acc.push(...flat(val, n - 1));
+            } else {
+                acc.push(val);
+            }
+            return acc;
+        }, []);
+    }
+};
+
